@@ -5,11 +5,6 @@ describe Game, :game do
   let(:player1) { spy :player1 }
   let(:player2) { spy :player2 }
 
-  it 'Accepts two arguemnts upon instantiation' do
-    expect(game.player1).to eq(player1)
-    expect(game.player2).to eq(player2)
-  end
-
   it 'Defines current player upon instantiation' do
     expect(game.current_player).to be(player1)
   end
@@ -29,6 +24,28 @@ describe Game, :game do
     it 'Swaps value of current and other player' do
       game.attack
       expect(game.current_player).to be(player2)
+    end
+  end
+
+  describe '#over?' do
+    it 'returns true when a player reaches zero' do
+      allow(player1).to receive(:health).and_return(0)
+      allow(player2).to receive(:health).and_return(10)
+      expect(game.over?).to be true
+    end
+
+    it 'returns false when no player has reached zero' do
+      allow(player1).to receive(:health).and_return(10)
+      allow(player2).to receive(:health).and_return(10)
+      expect(game.over?).to be false
+    end
+  end
+
+  describe '#self.set_game and self.game' do
+    it 'returns the game' do
+      described_class.start_game(player1, player2)
+      expect(described_class.game.player1).to be player1
+      expect(described_class.game.player2).to be player2
     end
   end
 end

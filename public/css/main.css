@@ -1,0 +1,100 @@
+body {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  color: #FFFFFF;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(10, 10%);
+  grid-template-rows: 50% 50%;
+}
+
+.left-well {
+  grid-column: 1/ span 5;
+  grid-row: 1/span 1;
+  margin: 5px;
+  border-color: red;
+  border-width: medium;
+  clear: both;
+  display: inline-block;
+}
+
+.right-well {
+  grid-column: 6/ span 5;
+  grid-row: 1/span 1;
+  margin: 5px;
+  border-color: red;
+  border-width: medium;
+  clear: both;
+  display: inline-block;
+}
+
+.player_details {
+  display: inline-block;
+  float: left;
+  width: 12em;
+}
+
+.player_details p {
+  font-size: 2em;
+  font-family: VT323;
+}
+
+.img-container {
+  display: inline-block;
+  margin: 10px;
+  border-color: black;
+  border-width: medium;
+  float: left;
+  width: 12em;
+}
+
+img {
+  max-width: 80%;
+}
+
+.controls {
+  grid-column: 1/span 5;
+  grid-row: 2/span 1;
+  text-align: center;
+}
+
+.gif-container {
+  grid-column: 6/span 5;
+  grid-row: 2/span 1;
+}
+
+.control_button {
+  background-color: black;
+  color: white;
+  display:inline-block;
+  padding:0.35em 1.2em;
+  border:0.1em solid #FFFFFF;
+  margin:0 0.3em 0.3em 0;
+  border-radius:0.12em;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-family:'Roboto',sans-serif;
+  font-weight:300;
+  color:#FFFFFF;
+  text-align:center;
+  transition: all 0.2s;
+}
+input.control_button:hover{
+ color:#000000;
+ background-color:#FFFFFF;
+}
+}
+
+.selected {
+  border-style: solid;
+  border-color: red;
+  border-width: medium;
+}
+
+.unselected {
+  border: none;
+}

@@ -1,23 +1,50 @@
 class Game
-  attr_reader :player1, :player2, :current_player, :other_player
+  attr_reader :player1, :player2, :current_player, :other_player,
+    :player_1_selector, :player_2_selector, :attack_message
 
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
-    @current_player = player1
-    @other_player = player2
+    @players = [@player1, @player2]
+  end
+
+  def self.game
+    @game
+  end
+
+  def self.start_game(player1, player2)
+    @game = self.new(player1, player2)
   end
 
   def attack
-    @other_player.hurt
+    other_player.hurt
+    set_attack_message
     end_turn
-    "POW! #{current_player.name} has been slapped!"
   end
 
-  private
+  def current_player
+    @players.first
+  end
+
+  def other_player
+    @players.last
+  end
 
   def end_turn
-    @current_player, @other_player = @other_player, @current_player
+    @players.rotate!
   end
+
+  def over?
+    @player1.health == 0 || @player2.health == 0
+  end
+
+  def loser
+    @players.select { |player| player.health = 0 }
+  end
+
+  def set_attack_message
+    @attack_message = "POW! #{other_player.name} has been slapped!"
+  end
+
 
 end

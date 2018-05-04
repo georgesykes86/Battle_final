@@ -5,17 +5,20 @@ require './lib/game'
 class UBM < Sinatra::Base
   enable :sessions
 
+  before do
+    @game = Game.game
+  end
+
   get '/' do
     erb(:index)
   end
 
   post '/names' do
-    $game = Game.new(Player.new(params[:player1]), Player.new(params[:player2]))
+    Game.start_game(Player.new(params[:player1]), Player.new(params[:player2]))
     redirect '/play'
   end
 
   get '/play' do
-    @attack_message = session[:attack_message]
     erb :play
   end
 
@@ -25,7 +28,7 @@ class UBM < Sinatra::Base
   end
 
   def attack
-    session[:attack_message] = $game.attack
+    @game.attack
   end
 
 end

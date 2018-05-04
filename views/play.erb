@@ -1,14 +1,50 @@
-<body style="color:red; fontsize:56px" background="https://omanali.weebly.com/uploads/2/5/7/2/25723270/1495093_orig.jpg" >
-  <h1 style="background:white">Player 1 is playing as Battle legend:</h1>
-  <h2 style="background:white"><%= $game.player1.name %></h2>
-  <h2 id="p1_health" style="background:white"><%= $game.player1.health %>HP</h2>
-  <h1 style="background:white">Player 2 is playing as Battle boi:</h1>
-  <h2 style="background:white"><%= $game.player2.name %></h2>
-  <h2 id="p2_health" style="background:white"><%= $game.player2.health %>HP</h2>
-  <h2 style="background:white"><%= @attack_message %></h2>
-
-  <form action='/attack' method='post'>
-    <h2 style="background:white">Player Controls</h2>
-    <input type='submit' id='attack' value='Attack'>
-  </form>
-</body>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Battle App</title>
+        <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+    </head>
+    <body>
+        <div class="grid-container">
+          <div class="left-well" class=<%= @game.player_1_selector %>>
+              <div class="img-container">
+                  <img src="/player1.png" alt="player1">
+              </div>
+              <div class="player_details">
+                  <p>Avatar: Scorpion</p>
+                  <p>Player: <%= @game.player1.name %></p>
+                  <p id="p1_health"><%= @game.player1.health %>HP</p>
+              </div>
+          </div>
+          <div class="right-well" class=<%= @game.player_2_selector %>>
+              <div class="img-container">
+                  <img src="/nigel.png" alt="player2">
+              </div>
+              <div class="player_details">
+                  <p>Avatar: Nigel</p>
+                  <p>Player: <%= @game.player2.name %></p>
+                  <p id="p2_health"><%= @game.player2.health %>HP</p>
+              </div>
+          </div>
+          <% if !@game.over? %>
+              <div class="controls">
+                <h2><%= @game.attack_message %></h2>
+                <h2>Player Controls</h2>
+                <form action='/attack' method='post'>
+                  <input class="control_button" type='submit' id='attack' value='Attack'>
+                </form>
+              </div>
+              <div class="gif-container">
+                  <img src="https://media.giphy.com/media/CatCCFZa6U8nK/giphy.gif">
+              </div>
+          <% else %>
+          <h2>GAME OVER!</h2>
+          <div class="gif-container">
+              <img src="https://media.giphy.com/media/6drjXn0BgRaaQ/giphy.gif">
+          </div>
+          <% end %>
+        </div>
+    </body>
+</html>
