@@ -1,6 +1,5 @@
 class Game
-  attr_reader :player1, :player2, :current_player, :other_player,
-    :player_1_selector, :player_2_selector, :attack_message
+  attr_reader :player1, :player2, :player_1_selector, :player_2_selector, :attack_message
 
   def initialize(player1, player2)
     @player1 = player1
@@ -42,9 +41,10 @@ class Game
     @players.select { |player| player.health = 0 }
   end
 
+  private
+
   def set_attack_message
     @attack_message = "POW! #{other_player.name} has been slapped!"
   end
-
 
 end
