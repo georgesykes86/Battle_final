@@ -8,7 +8,7 @@
     </head>
     <body>
         <div class="grid-container">
-          <div class="left-well" class=<%= @game.player_1_selector %>>
+          <div id="left-well" class="<%= @game.current_player == @game.player1 ? "selected" : "unselected" %>">
               <div class="img-container">
                   <img src="/player1.png" alt="player1">
               </div>
@@ -18,7 +18,7 @@
                   <p id="p1_health"><%= @game.player1.health %>HP</p>
               </div>
           </div>
-          <div class="right-well" class=<%= @game.player_2_selector %>>
+          <div id="right-well" class="<%= @game.current_player == @game.player2 ? "selected" : "unselected" %>">
               <div class="img-container">
                   <img src="/nigel.png" alt="player2">
               </div>

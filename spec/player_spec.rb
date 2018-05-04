@@ -18,7 +18,8 @@ describe Player, :player do
 
   describe '#hurt' do
     it 'reduces health' do
-      expect { subject.hurt }.to change{subject.health}.by -described_class::HURT_POINTS
+      srand(2)
+      expect { subject.hurt }.to change{subject.health}.by (-rand(described_class::HURT_POINTS)-1)
     end
   end
 end

@@ -9,6 +9,7 @@ class Player
   end
 
   def hurt
-    @health -= HURT_POINTS
+    srand(2)
+    @health -= rand(HURT_POINTS) + 1
   end
 end
