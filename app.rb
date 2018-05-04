@@ -2,6 +2,8 @@ require 'sinatra/base'
 require './lib/player'
 require './lib/game'
 require './lib/ai'
+require 'pry'
+require 'pry-byebug'
 
 class UBM < Sinatra::Base
   enable :sessions
@@ -32,16 +34,25 @@ class UBM < Sinatra::Base
 
   post '/names' do
     if params[:player2] == "X89Fgst73hqu4a"
-      Game.start_game(Player.new(params[:player1]), AI.new)
+      Game.start_game(Player.new(params[:player1]), Ai.new)
     else
       Game.start_game(Player.new(params[:player1]), Player.new(params[:player2]))
     end
     redirect '/play'
-    sleep 20
   end
 
   get '/play' do
+    redirect '/aiplay' if @game.current_player.is_a?(Ai)
     erb :play
+  end
+
+  get '/aiplay' do
+    erb :aiplay
+  end
+
+  get '/aiend' do
+    attack
+    redirect :play
   end
 
   post '/attack' do
