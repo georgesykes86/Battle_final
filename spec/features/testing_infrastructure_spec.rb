@@ -29,13 +29,13 @@ feature 'Testing battle mechanics' do
   scenario 'When attacked, Player 2 health reduced by 2' do
     sign_in_and_play
     click_button('attack')
-    expect(page.find('p', id: 'p2_health').text).to eq "90HP"
+    expect(page.find('p', id: 'p2_health').text).not_to eq "100HP"
   end
 
   scenario 'When attacked, Player 1s health is reduced by 2' do
     sign_in_and_play
     2.times { click_button('attack') }
-    expect(page.find('p', id: 'p1_health').text).to eq "90HP"
+    expect(page.find('p', id: 'p1_health').text).not_to eq "100HP"
   end
 
   scenario 'When no player has died the game still continues' do
@@ -45,8 +45,9 @@ feature 'Testing battle mechanics' do
   end
 
   scenario 'When one player reaches 0HP the game ends' do
+    srand(2)
     sign_in_and_play
-    19.times { click_button('attack') }
+    23.times { click_button('attack') }
     expect(page).to have_content('GAME OVER!')
     expect(page).not_to have_selector('div', class: 'controls')
   end

@@ -34,7 +34,7 @@ class Game
   end
 
   def over?
-    @player1.health == 0 || @player2.health == 0
+    @player1.health <= 0 || @player2.health <= 0
   end
 
   def loser
